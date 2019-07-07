@@ -100,6 +100,7 @@ class FireflyNameSelect extends AspFireListMixin(AspSecurableMixin(PolymerElemen
    * Use for one-time configuration of your component after local DOM is initialized. 
    */
   ready() {
+
       super.ready();
       if(this.defaultValue !== null){
           this.selected = this.defaultValue;
