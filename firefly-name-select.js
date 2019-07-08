@@ -4,19 +4,19 @@ import './node_modules/@vaadin/vaadin-dropdown-menu/src/vaadin-dropdown-menu.js'
 import '@vaadin/vaadin-item/vaadin-item.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
 import './firebase_components/firebase-query.js'
-import './aspen_components/asp-button.js';
-import {AspSecurableMixin} from './aspen_components/asp-securable-mixin.js';
-import {AspFireListMixin} from './aspen_components/asp-fire-list-mixin.js';
-import './aspen_components/asp-list-icons.js';
+import './aspen_components/aspen-button.js';
+import {AspSecurableMixin} from './aspen_components/aspen-securable-mixin.js';
+import {AspFireListMixin} from './aspen_components/firefly-list-mixin.js/index.js';
+import './aspen_components/aspen-list-icons.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 /**
- * `asp-name-fire-list` This component is designed to display a list of values where the list itself is editable,
+ * `firefly-name-select` This component is designed to display a list of values where the list itself is editable,
  * and has a firebase backing list. For example, this can be used to display a list of therapeutic areas, and
  * let the user add new therapeutic areas without having to switch pages.
  * 
  * <code>
- * 	<asp-name-fire-list label="Project Stage:" selected="{{model.stage}}" path="/stages" app-name="pharm2market" order-by-child="ord" has-role="[[hasRole]]"></asp-name-fire-list>
+ * 	<firefly-name-select label="Project Stage:" selected="{{model.stage}}" path="/stages" app-name="pharm2market" order-by-child="ord" has-role="[[hasRole]]"></firefly-name-select>
  * </code>
  *
  * @summary ShortDescription.
@@ -34,7 +34,7 @@ class FireflyNameSelect extends AspFireListMixin(AspSecurableMixin(PolymerElemen
             .component{
                 @apply --layout-horizontal;
             }
-            asp-button{
+            aspen-button{
                margin-top: 35px;
                margin-left: 4px;
                 height: 24px;
@@ -59,7 +59,7 @@ class FireflyNameSelect extends AspFireListMixin(AspSecurableMixin(PolymerElemen
             </vaadin-dropdown-menu>
         
             <template is="dom-if" if="[[hasRole]]">
-                <asp-button icon="list:add-circle" on-tap="_openAddDialog"></asp-button>
+                <aspen-button icon="list:add-circle" on-tap="_openAddDialog"></aspen-button>
             </template>
            
             
