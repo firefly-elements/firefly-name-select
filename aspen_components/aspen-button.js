@@ -1,7 +1,7 @@
 /*
     This component represents a button with a tooltip.
 
-    <asp-button icon="" tooltip="Some tooltip text"></asp-button>
+    <aspen-button icon="" tooltip="Some tooltip text"></aspen-button>
 
     ### Styling
 
@@ -20,12 +20,12 @@
 */
 import { PolymerElement } from '/node_modules/@polymer/polymer/polymer-element.js';
 
-import '../node_modules/@polymer/paper-tooltip/paper-tooltip.js';
-import '../node_modules/@polymer/iron-icon/iron-icon.js';
+import '@polymer/paper-tooltip';
+import '@polymer/iron-icon';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 /**
- * `asp-button` This component is a button that includes an icon and a tooltip.
+ * `aspen-button` This component is a button that includes an icon and a tooltip.
  *
  * @summary ShortDescription.
  * @customElement
@@ -69,7 +69,7 @@ class AspButton extends PolymerElement {
    * String providing the tag name to register the element under.
    */
   static get is() {
-      return 'asp-button';
+      return 'aspen-button';
   }
 
   /**
