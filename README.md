@@ -1,6 +1,20 @@
-# \<firefly-name-select\>
+# <firefly-name-select\>
 
-description goes here
+This component is designed to display a list of values where the list itself is editable,
+and has a firebase backing list. For example, this can be used to display a list of therapeutic areas, and
+let the user add new therapeutic areas without having to switch pages.
+
+## Installation
+
+```npm install --save @firefly/firefly-name-select```
+
+## In an HTML file
+
+
+
+
+
+
 
 ## Install the Polymer-CLI
 
