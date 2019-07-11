@@ -18,10 +18,10 @@
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import { PolymerElement } from '/node_modules/@polymer/polymer/polymer-element.js';
-
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-tooltip';
 import '@polymer/iron-icon';
+
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 /**

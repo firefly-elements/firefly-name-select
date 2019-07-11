@@ -1,19 +1,19 @@
-import { PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
-import './node_modules/@polymer/iron-flex-layout/iron-flex-layout.js';
-import './node_modules/@vaadin/vaadin-dropdown-menu/src/vaadin-dropdown-menu.js';
-
-import './aspen_components/aspen-button.js';
-
-import {AspSecurableMixin} from './aspen_components/aspen-securable-mixin.js';
-import {AspFireListMixin} from './firefly-list-mixin.js';
-
-import './firebase_components/firebase-query.js'
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@vaadin/vaadin-dropdown-menu/src/vaadin-dropdown-menu.js';
 import '@vaadin/vaadin-item/vaadin-item.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
+
+import './aspen_components/aspen-button.js';
 import './aspen_components/aspen-list-icons.js';
+import {AspSecurableMixin} from './aspen_components/aspen-securable-mixin.js';
+import {FireflyListMixin} from './firefly-list-mixin.js';
+
+import './firebase_components/firebase-query.js'
+
 
 /**
  * `firefly-name-select` This component is designed to display a list of values where the list itself is editable,
@@ -29,7 +29,7 @@ import './aspen_components/aspen-list-icons.js';
  * @polymer
  * @extends {Polymer.Element}
  */
-class FireflyNameSelect extends AspFireListMixin(AspSecurableMixin(PolymerElement)) {
+class FireflyNameSelect extends FireflyListMixin(AspSecurableMixin(PolymerElement)) {
   static get template() {
     return html`
         <style>

@@ -6,7 +6,7 @@ import { matchesSelector } from '@polymer/polymer/lib/legacy/polymer.dom.js';
  * @polymerMixin
  * @mixinFunction
  */
-export const AspFireListMixin = (superclass) => class extends superclass {
+export const FireflyListMixin = (superclass) => class extends superclass {
         /**
          * Object describing property-related metadata used by Polymer features
          */
