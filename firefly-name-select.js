@@ -7,12 +7,12 @@ import '@vaadin/vaadin-dropdown-menu/src/vaadin-dropdown-menu.js';
 import '@vaadin/vaadin-item/vaadin-item.js';
 import '@vaadin/vaadin-list-box/vaadin-list-box.js';
 
-import './aspen_components/aspen-button.js';
-import './aspen_components/aspen-list-icons.js';
-import {AspSecurableMixin} from './aspen_components/aspen-securable-mixin.js';
+import '@aspen-elements/aspen-button';
+import {AspenSecurableMixin} from '@aspen-elements/aspen-securable-mixin';
+import './aspen-list-icons.js';
 import {FireflyListMixin} from './firefly-list-mixin.js';
 
-import './firebase_components/firebase-query.js'
+import './polymerfire/firebase-query.js'
 
 
 /**
@@ -29,7 +29,7 @@ import './firebase_components/firebase-query.js'
  * @polymer
  * @extends {Polymer.Element}
  */
-class FireflyNameSelect extends FireflyListMixin(AspSecurableMixin(PolymerElement)) {
+class FireflyNameSelect extends FireflyListMixin(AspenSecurableMixin(PolymerElement)) {
   static get template() {
     return html`
         <style>
