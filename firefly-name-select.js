@@ -10,9 +10,9 @@ import '@vaadin/vaadin-list-box/vaadin-list-box.js';
 import '@aspen-elements/aspen-button';
 import {AspenSecurableMixin} from '@aspen-elements/aspen-securable-mixin';
 import './aspen-list-icons.js';
-import {FireflyListMixin} from './firefly-list-mixin.js';
+import {FireflyListMixin} from '@firefly-elements/firefly-list-mixin';
 
-import './polymerfire/firebase-query.js'
+import './polymerfire/firebase-query.js';
 
 
 /**

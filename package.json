@@ -12,6 +12,7 @@
   "dependencies": {
     "@aspen-elements/aspen-button": "^0.5.1",
     "@aspen-elements/aspen-securable-mixin": "^0.5.1",
+    "@firefly-elements/firefly-list-mixin": "^0.5.0",
     "@polymer/app-storage": "^3.0.2",
     "@polymer/iron-demo-helpers": "^3.0.0",
     "@polymer/iron-icon": "^3.0.0",
