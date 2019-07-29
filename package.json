@@ -11,6 +11,7 @@
   "main": "firefly-name-select.js",
   "dependencies": {
     "@aspen-elements/aspen-button": "^0.5.1",
+    "@aspen-elements/aspen-list-icons": "^0.5.0",
     "@aspen-elements/aspen-securable-mixin": "^0.5.1",
     "@firefly-elements/firefly-list-mixin": "^0.5.0",
     "@polymer/app-storage": "^3.0.2",
