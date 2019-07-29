@@ -13,7 +13,7 @@ import {AspenSecurableMixin} from '@aspen-elements/aspen-securable-mixin';
 import '@aspen-elements/aspen-list-icons';
 import {FireflyListMixin} from '@firefly-elements/firefly-list-mixin';
 
-import './polymerfire/firebase-query.js';
+import '@firefly-elements/polymerfire/firebase-query.js';
 
 
 /**
