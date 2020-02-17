@@ -12,8 +12,7 @@ import { AspenSecurableMixin } from "@aspen-elements/aspen-securable-mixin";
 
 import "@aspen-elements/aspen-list-icons";
 import { FireflyListMixin } from "@firefly-elements/firefly-list-mixin";
-
-import "@firefly-elements/polymerfire/firebase-query.js";
+import "@firefly-elements/polymerfire/firestore-query";
 
 /**
  * `firefly-name-select` This component is designed to display a list of values where the list itself is editable,
@@ -47,13 +46,12 @@ class FireflyNameSelect extends FireflyListMixin(
           height: 24px;
         }
       </style>
-      <firebase-query
+      <fs-query
         app-name="[[appName]]"
         path="[[path]]"
         data="{{model}}"
-        order-by-child="[[orderByChild]]"
-        equal-to="[[equalTo]]"
-      ></firebase-query>
+        order-by="[[orderBy]]"
+      ></fs-query>
 
       <div class="component">
         <vaadin-dropdown-menu
