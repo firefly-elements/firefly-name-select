@@ -57,29 +57,25 @@ class FireflyNameSelect extends FireflyListMixin(
         <vaadin-dropdown-menu
           label="[[label]]"
           placeholder="[[placeholder]]"
-          value="{{selected}}"
-          readonly="[[readonly]]"
+          value="{{ selected }}"
+          on-value-changed="__valueChanged"
         >
           <template>
             <vaadin-list-box>
-              <template is="dom-if" if="[[defaultValue]]">
-                <vaadin-item id="[[defaultValue]]"
-                  >[[defaultValue]]</vaadin-item
-                >
-              </template>
-
               <template is="dom-repeat" items="[[model]]">
-                <vaadin-item id="[[item.name]]">[[item.name]]</vaadin-item>
+                <vaadin-item id="[[item.$key]]" value="[[item]]"
+                  >[[item.name]]</vaadin-item
+                >
               </template>
             </vaadin-list-box>
           </template>
         </vaadin-dropdown-menu>
 
-        <template is="dom-if" if="[[hasRole]]">
-          <aspen-button
+        <template is="dom-if" if="{{ editable }}">
+          <asp-button
             icon="list:add-circle"
-            on-tap="_openAddDialog"
-          ></aspen-button>
+            on-tap="(_openAddDialog)"
+          ></asp-button>
         </template>
       </div>
 
@@ -92,16 +88,6 @@ class FireflyNameSelect extends FireflyListMixin(
    */
   static get is() {
     return "firefly-name-select";
-  }
-
-  static get properties() {
-    return {
-      /** The default value for the list. */
-      defaultValue: {
-        type: String,
-        value: null
-      }
-    };
   }
 
   /**
@@ -118,11 +104,37 @@ class FireflyNameSelect extends FireflyListMixin(
    */
   ready() {
     super.ready();
-    if (this.defaultValue !== null) {
-      this.selected = this.defaultValue;
-    }
 
     afterNextRender(this, function() {});
+  }
+
+  /**
+   * This method is responsible for notifying listeners whenever the selected value changes.
+   * When it changes it finds the object associated with the selected id, and then sends
+   * that object to any listener.
+   * @param {Event} e the event object
+   */
+
+  __valueChanged(e) {
+    let modelMap = new Map();
+    for (let item of this.model) {
+      modelMap.set(item.$key, item);
+    }
+
+    let selectedValue = e.detail.value;
+    let selectedItem = modelMap.get(selectedValue.$key);
+
+    this.set("selectedItem", selectedItem);
+
+    this.dispatchEvent(
+      new CustomEvent("fire-list-item-changed", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          value: selectedItem
+        }
+      })
+    );
   }
 }
 
