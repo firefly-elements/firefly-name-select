@@ -1,19 +1,15 @@
 import { PolymerElement } from "@polymer/polymer/polymer-element.js";
 import { html } from "@polymer/polymer/lib/utils/html-tag.js";
 import { afterNextRender } from "@polymer/polymer/lib/utils/render-status.js";
-
 import "@polymer/iron-flex-layout/iron-flex-layout.js";
 import "@vaadin/vaadin-dropdown-menu/src/vaadin-dropdown-menu.js";
 import "@vaadin/vaadin-item/vaadin-item.js";
 import "@vaadin/vaadin-list-box/vaadin-list-box.js";
-
 import "@aspen-elements/aspen-button";
 import { AspenSecurableMixin } from "@aspen-elements/aspen-securable-mixin";
-
 import "@aspen-elements/aspen-list-icons";
 import { FireflyListMixin } from "@firefly-elements/firefly-list-mixin";
 import "@firefly-elements/polymerfire/firestore-query";
-
 /**
  * `firefly-name-select` This component is designed to display a list of values where the list itself is editable,
  * and has a firebase backing list. For example, this can be used to display a list of therapeutic areas, and
@@ -52,44 +48,52 @@ class FireflyNameSelect extends FireflyListMixin(
         data="{{model}}"
         order-by="[[orderBy]]"
       ></fs-query>
-
       <div class="component">
         <vaadin-dropdown-menu
           label="[[label]]"
           placeholder="[[placeholder]]"
-          value="{{ selected }}"
+          value="{{selected}}"
+          readonly="[[readonly]]"
           on-value-changed="__valueChanged"
         >
           <template>
             <vaadin-list-box>
-              <template is="dom-repeat" items="[[model]]">
-                <vaadin-item id="[[item.$key]]" value="[[item]]"
-                  >[[item.name]]</vaadin-item
+              <template is="dom-if" if="[[defaultValue]]">
+                <vaadin-item id="[[defaultValue]]"
+                  >[[defaultValue]]</vaadin-item
                 >
+              </template>
+              <template is="dom-repeat" items="[[model]]">
+                <vaadin-item id="[[item.name]]">[[item.name]]</vaadin-item>
               </template>
             </vaadin-list-box>
           </template>
         </vaadin-dropdown-menu>
-
-        <template is="dom-if" if="{{ editable }}">
-          <asp-button
+        <template is="dom-if" if="[[hasRole]]">
+          <aspen-button
             icon="list:add-circle"
-            on-tap="(_openAddDialog)"
-          ></asp-button>
+            on-tap="_openAddDialog"
+          ></aspen-button>
         </template>
       </div>
-
       <slot select=".detail-dialog"></slot>
     `;
   }
-
   /**
    * String providing the tag name to register the element under.
    */
   static get is() {
     return "firefly-name-select";
   }
-
+  static get properties() {
+    return {
+      /** The default value for the list. */
+      defaultValue: {
+        type: String,
+        value: null,
+      },
+    };
+  }
   /**
    * Instance of the element is created/upgraded. Use: initializing state,
    * set up event listeners, create shadow dom.
@@ -98,44 +102,33 @@ class FireflyNameSelect extends FireflyListMixin(
   constructor() {
     super();
   }
-
   /**
    * Use for one-time configuration of your component after local DOM is initialized.
    */
   ready() {
     super.ready();
-
-    afterNextRender(this, function() {});
-  }
-
-  /**
-   * This method is responsible for notifying listeners whenever the selected value changes.
-   * When it changes it finds the object associated with the selected id, and then sends
-   * that object to any listener.
-   * @param {Event} e the event object
-   */
-
-  __valueChanged(e) {
-    let modelMap = new Map();
-    for (let item of this.model) {
-      modelMap.set(item.$key, item);
+    if (this.defaultValue !== null) {
+      this.selected = this.defaultValue;
     }
-
-    let selectedValue = e.detail.value;
-    let selectedItem = modelMap.get(selectedValue.$key);
-
-    this.set("selectedItem", selectedItem);
-
+    afterNextRender(this, function () {});
+  }
+  /**
+   * This method is fired whenever the dropdown value changes
+   */
+  __valueChanged(e) {
+    //any additional arguments that has been passed
+    let args = { args: this.args, label: e.target.label };
+    let changedValue = e.detail.value;
     this.dispatchEvent(
-      new CustomEvent("fire-list-item-changed", {
+      new CustomEvent("firefly-name-select-item-changed", {
         bubbles: true,
         composed: true,
         detail: {
-          value: selectedItem
-        }
+          value: changedValue,
+          arguments: args,
+        },
       })
     );
   }
 }
-
 window.customElements.define(FireflyNameSelect.is, FireflyNameSelect);
